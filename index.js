@@ -47,6 +47,9 @@ class ReactRouterGA extends React.Component<Props> {
 
     // Initialize Google Analytics
     window.ga('create', this.props.id, 'auto');
+    if (this.props.anonymizeIp) {
+      window.ga("set", "anonymizeIp", true);
+    }
   }
 
   sendPageView(location: Location) {
@@ -82,7 +85,8 @@ class ReactRouterGA extends React.Component<Props> {
 }
 
 ReactRouterGA.defaultProps = {
-  debug: false
+  debug: false,
+  anonymizeIp: false
 };
 
 export default withRouter(ReactRouterGA);
